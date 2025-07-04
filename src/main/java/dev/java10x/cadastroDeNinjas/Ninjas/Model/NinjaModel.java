@@ -1,22 +1,35 @@
-package dev.java10x.cadastroDeNinjas.Model;
+package dev.java10x.cadastroDeNinjas.Ninjas.Model;
 
+import dev.java10x.cadastroDeNinjas.Missoes.Model.MissoesModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 // Entity tranforma uma classe em umma entidade do BD
 
 @Entity
-@Table(name = "tb_cadastro")
+@Table(name = "TB_CADASTRO")
 public class NinjaModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
+
    private String name;
+
    private String email;
+
    private int idade;
+
+   //@ManytoOne | um ninja tem uma unica Missão
+   @ManyToOne
+   @JoinColumn(name = "missoes_id") // chave estrangeira
+   private MissoesModel missoes;
 
     public NinjaModel() {
     }
+
+
 
     public NinjaModel(String name, String email, int idade) {
         this.name = name;
