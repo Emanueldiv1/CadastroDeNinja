@@ -23,6 +23,7 @@ public class NinjaModel {
 
    private String name;
 
+   
    private String email;
 
    private int idade;
