@@ -14,21 +14,21 @@ public class NinjaController {
         return "Rota geral ";
     }
 
-    @GetMapping("/boasvindas")
-    public String boasVindas(){
-        return "Mensagem de rota boas vindas ";
-    }
+//    @GetMapping("/boasvindas")
+//    public String boasVindas(){
+//        return "Mensagem de rota boas vindas ";
+//    }
 
 
     //Add ninja
-    @PostMapping("/add/ninja")
+    @PostMapping("/add")
     public String criarNinja(){
         return "Ninja criado";
     }
 
 
     //Mostrar td os ninja
-    @GetMapping("/todosninja")
+    @GetMapping("/allninjas")
     public String todosNinjas(){
         return "Todos ninja";
     }
@@ -41,13 +41,13 @@ public class NinjaController {
     }
 
     //Alterar dados ninjas
-    @PutMapping("/alterar/ninja")
+    @PutMapping("/alterar")
     public String alterarNinja(){
         return "ninja alterado";
     }
 
     //Deletar ninja
-    @DeleteMapping("deletarID")
+    @DeleteMapping("/deletarID")
     public String deletarNinjaID(){
         return "NINJA EXCLUIDO";
     }
