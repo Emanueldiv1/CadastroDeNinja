@@ -21,6 +21,7 @@ public class NinjaModel {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
+   //rename column name to nome no banco de dados
    private String name;
 
    @Column(unique = true)
