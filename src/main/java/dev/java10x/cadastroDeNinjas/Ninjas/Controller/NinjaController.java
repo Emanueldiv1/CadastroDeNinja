@@ -1,13 +1,23 @@
 package dev.java10x.cadastroDeNinjas.Ninjas.Controller;
 
+import dev.java10x.cadastroDeNinjas.Ninjas.Model.NinjaModel;
+import dev.java10x.cadastroDeNinjas.Ninjas.Repository.NinjaRepository;
+import dev.java10x.cadastroDeNinjas.Ninjas.Service.NinjaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.PublicKey;
+import java.util.List;
 
 @RestController
 @RequestMapping("/ninja")
 public class NinjaController {
 
+    public NinjaService ninjaService;
+
+    public NinjaController(NinjaService ninjaService) {
+        this.ninjaService = ninjaService;
+    }
 
     @GetMapping
     public String geralRota(){
@@ -29,8 +39,8 @@ public class NinjaController {
 
     //Mostrar td os ninja
     @GetMapping("/allninjas")
-    public String todosNinjas(){
-        return "Todos ninja";
+    public List<NinjaModel> todosNinjas(){
+        return ninjaService.listarNinjas();
     }
 
 
