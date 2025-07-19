@@ -31,33 +31,33 @@ public class NinjaController {
 
 
     //Add ninja
-    @PostMapping("/add")
+    @PostMapping("/criar")
     public String criarNinja(){
         return "Ninja criado";
     }
 
 
     //Mostrar td os ninja
-    @GetMapping("/allninjas")
+    @GetMapping("/listar")
     public List<NinjaModel> todosNinjas(){
         return ninjaService.listarNinjas();
     }
 
 
     //Mostrar ninja por ID
-    @GetMapping("/ninjaID")
+    @GetMapping("/listarId")
     public String todosNinjasPorID(){
         return "ninja por ID";
     }
 
     //Alterar dados ninjas
-    @PutMapping("/alterar")
+    @PutMapping("/alterarId")
     public String alterarNinja(){
         return "ninja alterado";
     }
 
     //Deletar ninja
-    @DeleteMapping("/deletarID")
+    @DeleteMapping("/deletarId")
     public String deletarNinjaID(){
         return "NINJA EXCLUIDO";
     }

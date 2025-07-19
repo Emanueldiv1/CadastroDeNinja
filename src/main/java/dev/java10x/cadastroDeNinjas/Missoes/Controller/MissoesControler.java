@@ -21,7 +21,7 @@ public class MissoesControler {
 
     //Add missoes
     //Post -- Mandar uma requsição para crias as missoes
-    @PostMapping("/add")
+    @PostMapping("/criar")
     public String criarMissao(){
         return "missão criada";
     }
@@ -29,7 +29,7 @@ public class MissoesControler {
 
     //Mostrar td os missoes
     //Get -- Mandar uma requsição para mostrar as missoes
-    @GetMapping("/allmissoes")
+    @GetMapping("/listar")
     public List<MissoesModel>todasMissoes(){
        return missoesService.listarMissoes();
     }
@@ -37,7 +37,7 @@ public class MissoesControler {
 
     //Mostrar missoes por ID
     //Get -- Mandar uma requsição para mostrar as missoes por ID
-    @GetMapping("/missoesID")
+    @GetMapping("/listarId")
     public String todasMissoesPorID(){
         return "missoes por ID";
     }
@@ -45,14 +45,14 @@ public class MissoesControler {
 
     //Alterar dados missoess
     //Put -- Mandar uma requsição para alterar as Missoes
-    @PutMapping("/alterarmissoes")
+    @PutMapping("/alterarId")
     public String alterarMissoes(){
         return "missoes alterado";
     }
 
     //Deletar missoes
     //Delete -- Mandar uma requsição para deletar as missoes
-    @DeleteMapping("/deletarmissaoID")
+    @DeleteMapping("/deletarId")
     public String deletarMissaoID(){
         return "MISSÃO EXCLUIDO";
     }
