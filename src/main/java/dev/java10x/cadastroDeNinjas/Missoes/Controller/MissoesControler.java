@@ -37,9 +37,9 @@ public class MissoesControler {
 
     //Mostrar missoes por ID
     //Get -- Mandar uma requsição para mostrar as missoes por ID
-    @GetMapping("/listarId")
-    public String todasMissoesPorID(){
-        return "missoes por ID";
+    @GetMapping("/listar/{id}")
+    public MissoesModel listarPorId(@PathVariable long id){
+        return missoesService.missoesId(id);
     }
 
 
