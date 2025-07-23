@@ -36,4 +36,12 @@ public class MissoesService {
         System.out.println("Missão deletada ");
     }
 
+    public MissoesModel missoesAtualizada (long id, MissoesModel missaoAtualizada){
+        if (missoesRepository.existsById(id)){
+            missaoAtualizada.setId(id);
+            return missoesRepository.save(missaoAtualizada);
+        }
+        return null;
+    }
+
 }
