@@ -2,6 +2,7 @@ package dev.java10x.cadastroDeNinjas.Missoes.Service;
 
 import dev.java10x.cadastroDeNinjas.Missoes.Model.MissoesModel;
 import dev.java10x.cadastroDeNinjas.Missoes.Repository.MissoesRepository;
+import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +29,11 @@ public class MissoesService {
 
     public MissoesModel criarMissoes(MissoesModel missoes){
         return missoesRepository.save(missoes);
+    }
+
+    public void deletarMissoes(long id){
+        missoesRepository.deleteById(id);
+        System.out.println("Missão deletada ");
     }
 
 }

@@ -51,9 +51,9 @@ public class MissoesControler {
     }
 
     //Deletar missoes
-    //Delete -- Mandar uma requsição para deletar as missoes
-    @DeleteMapping("/deletarId")
-    public String deletarMissaoID(){
-        return "MISSÃO EXCLUIDO";
+    // Deletar na maioria das vezes tem que ser um metodo void
+    @DeleteMapping("/deletar/{id}")
+    public void deletarMissaoID(@PathVariable long id){
+        missoesService.deletarMissoes(id);
     }
 }
