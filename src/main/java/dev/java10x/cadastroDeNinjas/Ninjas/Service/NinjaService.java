@@ -1,5 +1,7 @@
 package dev.java10x.cadastroDeNinjas.Ninjas.Service;
 
+import dev.java10x.cadastroDeNinjas.Ninjas.Dto.NinjaDTO;
+import dev.java10x.cadastroDeNinjas.Ninjas.Mapper.NinjaMapper;
 import dev.java10x.cadastroDeNinjas.Ninjas.Model.NinjaModel;
 import dev.java10x.cadastroDeNinjas.Ninjas.Repository.NinjaRepository;
 import org.springframework.stereotype.Service;
@@ -10,10 +12,12 @@ import java.util.Optional;
 @Service
 public class NinjaService {
 
-    public NinjaRepository ninjaRepository;
+    private NinjaRepository ninjaRepository;
+    private NinjaMapper ninjaMapper;
 
-    public NinjaService(NinjaRepository ninjaRepository) {
+    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
         this.ninjaRepository = ninjaRepository;
+        this.ninjaMapper = ninjaMapper;
     }
 
     public List<NinjaModel> listarNinjas(){
@@ -26,8 +30,11 @@ public class NinjaService {
 
     }
 
-    public NinjaModel criarNinja(NinjaModel ninja){
-        return ninjaRepository.save(ninja);
+    public NinjaDTO criarNinja(NinjaDTO ninjaDTO){
+        NinjaModel ninja = ninjaMapper.map(ninjaDTO);
+        ninjaRepository.save(ninja);
+        return ninjaMapper.map(ninja);
+
     }
 
     // Deletar na maioria das vezes tem que ser um metodo void

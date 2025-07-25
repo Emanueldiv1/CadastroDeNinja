@@ -1,5 +1,6 @@
 package dev.java10x.cadastroDeNinjas.Ninjas.Controller;
 
+import dev.java10x.cadastroDeNinjas.Ninjas.Dto.NinjaDTO;
 import dev.java10x.cadastroDeNinjas.Ninjas.Model.NinjaModel;
 import dev.java10x.cadastroDeNinjas.Ninjas.Repository.NinjaRepository;
 import dev.java10x.cadastroDeNinjas.Ninjas.Service.NinjaService;
@@ -32,7 +33,7 @@ public class NinjaController {
 
     //Add ninja
     @PostMapping("/criar")
-    public NinjaModel criarNinja(@RequestBody NinjaModel ninja){
+    public NinjaDTO criarNinja(@RequestBody NinjaDTO ninja){
         return ninjaService.criarNinja(ninja);
     }
 
