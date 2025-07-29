@@ -1,5 +1,6 @@
 package dev.java10x.cadastroDeNinjas.Ninjas.Controller;
 
+import dev.java10x.cadastroDeNinjas.Ninjas.Dto.NinjaDTO;
 import dev.java10x.cadastroDeNinjas.Ninjas.Model.NinjaModel;
 import dev.java10x.cadastroDeNinjas.Ninjas.Repository.NinjaRepository;
 import dev.java10x.cadastroDeNinjas.Ninjas.Service.NinjaService;
@@ -32,27 +33,27 @@ public class NinjaController {
 
     //Add ninja
     @PostMapping("/criar")
-    public NinjaModel criarNinja(@RequestBody NinjaModel ninja){
+    public NinjaDTO criarNinja(@RequestBody NinjaDTO ninja){
         return ninjaService.criarNinja(ninja);
     }
 
 
     //Mostrar td os ninja
     @GetMapping("/listar")
-    public List<NinjaModel> todosNinjas(){
+    public List<NinjaDTO> todosNinjas(){
         return ninjaService.listarNinjas();
     }
 
 
     //Mostrar ninja por ID
     @GetMapping("/listar/{id}")
-    public NinjaModel NinjasPorID(@PathVariable Long id){
+    public NinjaDTO NinjasPorID(@PathVariable Long id){
         return ninjaService.listarNinjaId(id);
     }
 
     //Alterar dados ninjas
     @PutMapping("/alterar/{id}")
-    public NinjaModel alterarNinja(@PathVariable long id, @RequestBody NinjaModel ninjaAtualizar){
+    public NinjaDTO alterarNinja(@PathVariable long id, @RequestBody NinjaDTO ninjaAtualizar){
         return ninjaService.atulizarNinja(id, ninjaAtualizar);
     }
 
