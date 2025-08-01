@@ -28,6 +28,12 @@ public class NinjaService {
                .collect(Collectors.toList());
     }
 
+
+    /* usando "->" (parametros) -> { corpo } com a função lambda EXPLÍCITA e |  "::" Classe::métodos  função lambda IMPLÍCITA
+    public NinjaDTO listarNinjaId(long id){
+        Optional<NinjaModel> ninjaId = ninjaRepository.findById(id);
+        return ninjaId.map(ninjaId -> NinjaMapper.map(ninjaId)).orElse(null);
+    }*/
     public NinjaDTO listarNinjaId(long id){
         Optional<NinjaModel> ninjaId = ninjaRepository.findById(id);
         return ninjaId.map(ninjaMapper::map).orElse(null);
