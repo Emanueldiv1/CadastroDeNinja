@@ -30,6 +30,6 @@ public class MissoesModel {
     // OneToMany | uma missão pode ter uma lista de ninja
     @OneToMany(mappedBy = "missoes")
     @JsonIgnore
-    private List<NinjaDTO>  ninja;
+    private List<NinjaModel>  ninja;
 
 }
