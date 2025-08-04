@@ -1,6 +1,7 @@
 package dev.java10x.cadastroDeNinjas.Missoes.Controller;
 
 
+import dev.java10x.cadastroDeNinjas.Missoes.DTO.MissoesDTO;
 import dev.java10x.cadastroDeNinjas.Missoes.Model.MissoesModel;
 import dev.java10x.cadastroDeNinjas.Missoes.Service.MissoesService;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import java.util.List;
 @RequestMapping("/missoes")
 public class MissoesControler {
 
-    public MissoesService missoesService;
+    private MissoesService missoesService;
 
     public  MissoesControler(MissoesService missoesService){
         this.missoesService = missoesService;
@@ -22,7 +23,7 @@ public class MissoesControler {
     //Add missoes
     //Post -- Mandar uma requsição para crias as missoes
     @PostMapping("/criar")
-    public MissoesModel criarMissao(@RequestBody MissoesModel missoes){
+    public MissoesDTO criarMissao(@RequestBody MissoesDTO missoes){
         return missoesService.criarMissoes(missoes);
     }
 
