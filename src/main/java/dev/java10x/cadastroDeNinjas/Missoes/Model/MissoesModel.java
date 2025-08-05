@@ -1,6 +1,7 @@
 package dev.java10x.cadastroDeNinjas.Missoes.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.java10x.cadastroDeNinjas.Ninjas.Dto.NinjaDTO;
 import dev.java10x.cadastroDeNinjas.Ninjas.Model.NinjaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,9 @@ public class MissoesModel {
     private Long id;
     private String nome;
     private String dificuldade;
+
+    @Column(name = "descricao")
+    private String descricao;
 
 
     // OneToMany | uma missão pode ter uma lista de ninja

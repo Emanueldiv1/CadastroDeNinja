@@ -1,6 +1,7 @@
 package dev.java10x.cadastroDeNinjas.Missoes.Controller;
 
 
+import dev.java10x.cadastroDeNinjas.Missoes.DTO.MissoesDTO;
 import dev.java10x.cadastroDeNinjas.Missoes.Model.MissoesModel;
 import dev.java10x.cadastroDeNinjas.Missoes.Service.MissoesService;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import java.util.List;
 @RequestMapping("/missoes")
 public class MissoesControler {
 
-    public MissoesService missoesService;
+    private MissoesService missoesService;
 
     public  MissoesControler(MissoesService missoesService){
         this.missoesService = missoesService;
@@ -22,7 +23,7 @@ public class MissoesControler {
     //Add missoes
     //Post -- Mandar uma requsição para crias as missoes
     @PostMapping("/criar")
-    public MissoesModel criarMissao(@RequestBody MissoesModel missoes){
+    public MissoesDTO criarMissao(@RequestBody MissoesDTO missoes){
         return missoesService.criarMissoes(missoes);
     }
 
@@ -30,7 +31,7 @@ public class MissoesControler {
     //Mostrar td os missoes
     //Get -- Mandar uma requsição para mostrar as missoes
     @GetMapping("/listar")
-    public List<MissoesModel>todasMissoes(){
+    public List<MissoesDTO>todasMissoes(){
        return missoesService.listarMissoes();
     }
 
@@ -38,7 +39,7 @@ public class MissoesControler {
     //Mostrar missoes por ID
     //Get -- Mandar uma requsição para mostrar as missoes por ID
     @GetMapping("/listar/{id}")
-    public MissoesModel listarPorId(@PathVariable long id){
+    public MissoesDTO listarPorId(@PathVariable long id){
         return missoesService.missoesId(id);
     }
 
@@ -46,8 +47,8 @@ public class MissoesControler {
     //Alterar dados missoess
     //Put -- Mandar uma requsição para alterar as Missoes
     @PutMapping("/alterar/{id}")
-    public MissoesModel alterarMissoes(@PathVariable long id, @RequestBody MissoesModel missaoAtualizadar){
-        return missoesService.missoesAtualizada(id, missaoAtualizadar);
+    public MissoesDTO alterarMissoes(@PathVariable long id, @RequestBody MissoesDTO missaoAtualizada){
+        return missoesService.missoesAtualizada(id, missaoAtualizada);
 
     }
 
