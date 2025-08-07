@@ -35,7 +35,7 @@ public class MissoesService {
 
     }
 
-    public MissoesDTO missoesId(long id){
+    public MissoesDTO listarMissoesId(long id){
         Optional<MissoesModel> missoesPorId = missoesRepository.findById(id);
         return missoesPorId.map(missoesMapper :: map).orElse(null);
     }
