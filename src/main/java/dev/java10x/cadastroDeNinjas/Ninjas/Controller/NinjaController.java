@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/ninja")
 public class NinjaController {
 
-    public NinjaService ninjaService;
+    public final NinjaService ninjaService;
 
     public NinjaController(NinjaService ninjaService) {
         this.ninjaService = ninjaService;

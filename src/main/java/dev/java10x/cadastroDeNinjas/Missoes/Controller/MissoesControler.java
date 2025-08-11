@@ -17,7 +17,7 @@ import java.util.Optional;
 @RequestMapping("/missoes")
 public class MissoesControler {
 
-    private MissoesService missoesService;
+    private final MissoesService missoesService;
 
     public  MissoesControler(MissoesService missoesService){
         this.missoesService = missoesService;
