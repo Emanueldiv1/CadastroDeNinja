@@ -1,56 +1,149 @@
-<!
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabela de Ninjas</title>
+
+    <style>
+    /* Reset básico */
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+    background: #f4f6f8;
+    padding: 20px;
+    color: #333;
+    }
+
+    h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #2c3e50;
+    }
+
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    thead {
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    color: white;
+    }
+
+    th, td {
+    padding: 12px 15px;
+    text-align: left;
+    }
+
+    tbody tr {
+    transition: background-color 0.3s ease;
+    }
+
+    tbody tr:hover {
+    background-color: #f0f8ff;
+    }
+
+    img {
+    border-radius: 8px;
+    object-fit: cover;
+    }
+
+    /* Botões */
+    button, a {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 4px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    }
+
+    button {
+    background: #27ae60;
+    color: white;
+    border: none;
+    }
+
+    button:hover {
+    background: #2ecc71;
+    transform: scale(1.05);
+    }
+
+    button:active {
+    transform: scale(0.95);
+    }
+
+    a {
+    background: #e74c3c;
+    color: white;
+    }
+
+    a:hover {
+    background: #ff6b5a;
+    transform: scale(1.05);
+    }
+
+    a:active {
+    transform: scale(0.95);
+    }
+    </style>
+
 </head>
 <body>
-<h1>Tabela ne ninjas</h1>
+
+<h1>Tabela de Ninjas</h1>
+
 <table>
-
-     <thead>
-        <tr>
-            <th>Imagem</th>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Idade</th>
-            <th>Email</th>
-            <th>Rank</th>
-            <th>Missoes</th>
-        </tr>
-
-     </thead>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Imagem</th>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Email</th>
+        <th>Rank</th>
+        <th>Missões</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
     <tbody>
-
-        <tr th:each="ninja: ${ninjas}">
-            <td><img th:src="${ninja.imgUrl}" widht="100" height="100" ></td>
-            <td th:text="${ninja.id}"></td>
-            <td th:text="${ninja.name}"></td>
-            <td th:text="${ninja.idade}"></td>
-            <td th:text="${ninja.email}"></td>
-            <td th:text="${ninja.rank}"></td>
-            <td>
-                <span th:if="${ninja.missoes}">Nome: <span th:text="${ninja.missoes.nome}"></span>,
+    <tr th:each="ninja : ${ninjas}">
+        <td th:text="${ninja.id}"></td>
+        <td><img th:src="${ninja.imgUrl}" width="100" height="100"></td>
+        <td th:text="${ninja.name}"></td>
+        <td th:text="${ninja.idade}"></td>
+        <td th:text="${ninja.email}"></td>
+        <td th:text="${ninja.rank}"></td>
+        <td>
+                <span th:if="${ninja.missoes}">
+                    Nome: <span th:text="${ninja.missoes.nome}"></span>,
                     Dificuldade: <span th:text="${ninja.missoes.dificuldade}"></span>,
                     Descrição: <span th:text="${ninja.missoes != null and ninja.missoes.descricao != null and !#strings.isEmpty(ninja.missoes.descricao) ? ninja.missoes.descricao : 'Sem descrição'}"></span>
                 </span>
-                <span th:if="${ninja.missoes == null}" > Sem Missões </span>
-            </td>
+            <span th:if="${ninja.missoes == null}">Sem Missões</span>
+        </td>
+        <td>
+            <a th:href="@{/ninjas/ui/#/{id}(id=${ninja.id})}">Ver Detalhes</a>
+            <a th:href="@{/ninjas/ui/#/{id}(id=${ninja.id})}">Alterar</a>
+            <a th:href="@{/ninjas/ui/deletar/{id}(id=${ninja.id})}">Deletar</a>
 
-            <td>
-                <button>Ver Detalhes</button>
-                <button>Alterar</button>
-                <button>Deletar</button>
-            </td>
 
-        </tr>
-
+        </td>
+    </tr>
     </tbody>
-
-
-
-
 </table>
 
 </body>
