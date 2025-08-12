@@ -1,0 +1,57 @@
+<!
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tabela de Ninjas</title>
+</head>
+<body>
+<h1>Tabela ne ninjas</h1>
+<table>
+
+     <thead>
+        <tr>
+            <th>Imagem</th>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Email</th>
+            <th>Rank</th>
+            <th>Missoes</th>
+        </tr>
+
+     </thead>
+    <tbody>
+
+        <tr th:each="ninja: ${ninjas}">
+            <td><img th:src="${ninja.imgUrl}" widht="100" height="100" ></td>
+            <td th:text="${ninja.id}"></td>
+            <td th:text="${ninja.name}"></td>
+            <td th:text="${ninja.idade}"></td>
+            <td th:text="${ninja.email}"></td>
+            <td th:text="${ninja.rank}"></td>
+            <td>
+                <span th:if="${ninja.missoes}">Nome: <span th:text="${ninja.missoes.nome}"></span>,
+                    Dificuldade: <span th:text="${ninja.missoes.dificuldade}"></span>,
+                    Descrição: <span th:text="${ninja.missoes != null and ninja.missoes.descricao != null and !#strings.isEmpty(ninja.missoes.descricao) ? ninja.missoes.descricao : 'Sem descrição'}"></span>
+                </span>
+                <span th:if="${ninja.missoes == null}" > Sem Missões </span>
+            </td>
+
+            <td>
+                <button>Ver Detalhes</button>
+                <button>Alterar</button>
+                <button>Deletar</button>
+            </td>
+
+        </tr>
+
+    </tbody>
+
+
+
+
+</table>
+
+</body>
+</html>
