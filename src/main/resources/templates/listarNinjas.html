@@ -5,106 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabela de Ninjas</title>
 
-    <style>
-    /* Reset básico */
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    }
+    <link rel="stylesheet" th:href="@{/css/listarNinja.css?v=3}">
 
-    body {
-    background: #f4f6f8;
-    padding: 20px;
-    color: #333;
-    }
-
-    h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2rem;
-    color: #2c3e50;
-    }
-
-    table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-
-    thead {
-    background: linear-gradient(90deg, #3498db, #2980b9);
-    color: white;
-    }
-
-    th, td {
-    padding: 12px 15px;
-    text-align: left;
-    }
-
-    tbody tr {
-    transition: background-color 0.3s ease;
-    }
-
-    tbody tr:hover {
-    background-color: #f0f8ff;
-    }
-
-    img {
-    border-radius: 8px;
-    object-fit: cover;
-    }
-
-    /* Botões */
-    button, a {
-    display: inline-block;
-    padding: 8px 14px;
-    margin: 4px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    }
-
-    button {
-    background: #27ae60;
-    color: white;
-    border: none;
-    }
-
-    button:hover {
-    background: #2ecc71;
-    transform: scale(1.05);
-    }
-
-    button:active {
-    transform: scale(0.95);
-    }
-
-    a {
-    background: #e74c3c;
-    color: white;
-    }
-
-    a:hover {
-    background: #ff6b5a;
-    transform: scale(1.05);
-    }
-
-    a:active {
-    transform: scale(0.95);
-    }
-    </style>
 
 </head>
 <body>
 
 <h1>Tabela de Ninjas</h1>
+
+<a th:href="@{/ninjas/ui/adicionar}" class="btn-add">Adicionar Novo Ninja</a>
 
 <table>
     <thead>
@@ -135,13 +44,15 @@
                 </span>
             <span th:if="${ninja.missoes == null}">Sem Missões</span>
         </td>
-        <td>
-            <a th:href="@{/ninjas/ui/#/{id}(id=${ninja.id})}">Ver Detalhes</a>
-            <a th:href="@{/ninjas/ui/#/{id}(id=${ninja.id})}">Alterar</a>
-            <a th:href="@{/ninjas/ui/deletar/{id}(id=${ninja.id})}">Deletar</a>
 
-
+        <td class="acoes">
+            <a th:href="@{/ninjas/ui/listar/{id}(id=${ninja.id})}" class="btn-green">Detalhes</a>
+            <a th:href="@{/ninjas/ui/alterar/{id}(id=${ninja.id})}" class="btn-blue">Alterar</a>
+            <a th:href="@{/ninjas/ui/deletar/{id}(id=${ninja.id})}" class="btn-red">Deletar</a>
         </td>
+
+
+
     </tr>
     </tbody>
 </table>
