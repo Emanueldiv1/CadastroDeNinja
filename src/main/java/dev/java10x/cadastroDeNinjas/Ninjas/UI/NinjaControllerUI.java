@@ -6,10 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -37,17 +35,61 @@ public class NinjaControllerUI {
     }
 
     @GetMapping("/listar/{id}")
-    public String NinjasPorID(@PathVariable Long id, Model model){
-        NinjaDTO ninja = ninjaService.listarNinjaId(id);
-
-        if (ninja != null){
-            model.addAttribute("ninjas", ninja);
+    public String listarNinjasPorId(@PathVariable Long id, Model model) {
+        NinjaDTO ninja =  ninjaService.listarNinjaId(id);
+        if (ninja !=null) {
+            model.addAttribute("ninja", ninja);
             return "detalhesNinja";
-        }
-        else{
-            model.addAttribute("Mensagem", "Ninja não encontrado" );
+        } else {
+            model.addAttribute("mensagem", "Ninja não encontrado");
             return "listarNinjas";
         }
     }
+
+    @GetMapping("/adicionar")
+    public String mostrarFormularioAdicionarNinja(Model model) {
+        model.addAttribute("ninja", new NinjaDTO());
+        return "adicionarNinja";
+    }
+
+    @PostMapping("/salvar")
+    public String salvarNinja(@ModelAttribute NinjaDTO ninja, RedirectAttributes redirectAttributes) {
+        ninjaService.criarNinja(ninja);
+        redirectAttributes.addFlashAttribute("mensagem", "Ninja cadastrado com sucesso!");
+        return "redirect:/ninjas/ui/listar";
+    }
+
+
+    @GetMapping("/alterar/{id}")
+    public String mostrarFormularioEdicao(@PathVariable long id, Model model) {
+        NinjaDTO ninja = ninjaService.listarNinjaId(id);
+        if (ninja == null) {
+            return "redirect:/ninjas/ui/listar"; // se não achar, volta pra lista
+        }
+        model.addAttribute("ninja", ninja);
+        return "editarNinja"; // nome do HTML
+    }
+
+
+    @PostMapping("/alterar/{id}")
+    public String alterarNinja(@PathVariable long id, @ModelAttribute("ninja") NinjaDTO ninjaForm) {
+        NinjaDTO ninjaExistente = ninjaService.listarNinjaId(id);
+
+        if (ninjaExistente != null) {
+            // Só atualiza os campos que podem mudar
+            ninjaExistente.setName(ninjaForm.getName());
+            ninjaExistente.setEmail(ninjaForm.getEmail());
+            ninjaExistente.setIdade(ninjaForm.getIdade());
+            ninjaExistente.setRank(ninjaForm.getRank());
+
+            // NÃO mexe em imgUrl e missoes
+            ninjaService.atualizarNinja(id, ninjaExistente);
+        }
+
+        return "redirect:/ninjas/ui/listar";
+    }
+
+
+
 
 }

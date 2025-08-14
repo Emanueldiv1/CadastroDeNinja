@@ -1,0 +1,32 @@
+<!
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Editar Personagem</title>
+</head>
+<body>
+
+<form th:action="@{'/ninjas/ui/alterar/' + ${ninja.id}}" method="post">
+    <label>Nome:</label>
+    <input type="text" name="name" th:value="${ninja.name}" required>
+
+    <label>Idade:</label>
+    <input type="number" name="idade" th:value="${ninja.idade}" required>
+
+    <label>Email:</label>
+    <input type="email" name="email" th:value="${ninja.email}" required>
+
+    <label>Rank:</label>
+    <input type="text" name="rank" th:value="${ninja.rank}" required>
+
+    <label>Missão:</label>
+    <input type="text" th:value="${ninja.missoes.nome != null ? ninja.missoes.nome : 'Sem missão'}" readonly>
+
+
+    <button type="submit">Salvar Alterações</button>
+</form>
+
+
+</body>
+</html>
