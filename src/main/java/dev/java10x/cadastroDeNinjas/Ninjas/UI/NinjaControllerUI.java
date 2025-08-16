@@ -77,12 +77,13 @@ public class NinjaControllerUI {
 
         if (ninjaExistente != null) {
             // Só atualiza os campos que podem mudar
+            ninjaExistente.setImgUrl(ninjaForm.getImgUrl());
             ninjaExistente.setName(ninjaForm.getName());
             ninjaExistente.setEmail(ninjaForm.getEmail());
             ninjaExistente.setIdade(ninjaForm.getIdade());
             ninjaExistente.setRank(ninjaForm.getRank());
 
-            // NÃO mexe em imgUrl e missoes
+            // NÃO mexe em missoes
             ninjaService.atualizarNinja(id, ninjaExistente);
         }
 
