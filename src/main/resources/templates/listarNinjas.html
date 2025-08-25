@@ -38,9 +38,8 @@
         <td th:text="${ninja.rank}"></td>
         <td>
                 <span th:if="${ninja.missoes}">
-                    Nome: <span th:text="${ninja.missoes.nome}"></span>,
+                    Nome: <span th:text="${ninja.missoes.nome}"></span>, <br>
                     Dificuldade: <span th:text="${ninja.missoes.dificuldade}"></span>,
-                    Descrição: <span th:text="${ninja.missoes != null and ninja.missoes.descricao != null and !#strings.isEmpty(ninja.missoes.descricao) ? ninja.missoes.descricao : 'Sem descrição'}"></span>
                 </span>
             <span th:if="${ninja.missoes == null}">Sem Missões</span>
         </td>

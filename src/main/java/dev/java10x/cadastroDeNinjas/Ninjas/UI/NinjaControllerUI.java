@@ -1,5 +1,6 @@
 package dev.java10x.cadastroDeNinjas.Ninjas.UI;
 
+import dev.java10x.cadastroDeNinjas.Missoes.DTO.MissoesDTO;
 import dev.java10x.cadastroDeNinjas.Ninjas.Dto.NinjaDTO;
 import dev.java10x.cadastroDeNinjas.Ninjas.Service.NinjaService;
 import org.springframework.http.HttpStatus;
@@ -89,6 +90,9 @@ public class NinjaControllerUI {
 
         return "redirect:/ninjas/ui/listar";
     }
+
+
+
 
 
 
