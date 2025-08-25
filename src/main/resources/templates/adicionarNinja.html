@@ -2,20 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Adicionar Ninja</title>
+
+    <link rel="stylesheet" th:href="@{/css/adicionarNinja.css}">
+    <script th:src="@{/js/adicionarNinja.js}" defer></script>
+
 </head>
 <body>
 <h1>Adicionar Novo Ninja</h1>
 <div class="form-container">
     <div th:if="${mensagem}" class="mensagem" th:text="${mensagem}"></div>
     <form th:action="@{/ninjas/ui/salvar}" th:object="${ninja}" method="post">
+
+        <!-- Preview -->
+        <img id="preview" class="preview-img" alt="Preview da Imagem">
+        <!-- Campo para colar a URL -->
+        <label for="imgUrl">URL da Imagem:</label>
+        <input type="text" id="imgUrl" th:field="*{imgUrl}" required />
+
+
+
+
         <label for="name">Nome:</label>
         <input type="text" id="name" th:field="*{name}" required />
 
         <label for="email">Email:</label>
         <input type="email" id="email" th:field="*{email}" required />
-
-        <label for="imgUrl">URL da Imagem:</label>
-        <input type="text" id="imgUrl" th:field="*{imgUrl}" required />
 
         <label for="idade">Idade:</label>
         <input type="number" id="idade" th:field="*{idade}" required />
@@ -23,7 +34,17 @@
         <label for="rank">Rank:</label>
         <input type="text" id="rank" th:field="*{rank}" />
 
-        <button type="submit">Cadastrar Ninja</button>
+        <label for="missoes">Missão:</label>
+        <select id="missoes" th:field="*{missoes}" required>
+            <option value="">-- Selecione uma missão --</option>
+            <option th:each="m : ${missoes}"
+                    th:value="${m.id}"
+                    th:text="${m.nome}">
+            </option>
+        </select>
+
+
+        <button class="bnt-up" type="submit">Cadastrar Ninja</button>
     </form>
     <a th:href="@{/ninjas/ui/listar}">Voltar para a lista de ninjas</a>
 </div>
